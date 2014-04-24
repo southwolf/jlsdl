@@ -29,7 +29,7 @@ int jldirector_pop_to_scene(jlscene *s, int animation_type);
 //返回当前场景
 jlscene* jldirector_current_scene();
 //覆盖场景
-jlscene*  jldirector_replace_scene(jlscene *s, int animatino_type);
+int  jldirector_replace_scene(jlscene *s, int animatino_type);
 //end
 
 

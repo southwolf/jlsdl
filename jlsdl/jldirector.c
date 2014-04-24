@@ -31,12 +31,11 @@ int jldirector_destroy()
     director = NULL;
     return 0;
 }
-jlscene* jldirector_replace_scene(jlscene *s, int animatino_type)
+int jldirector_replace_scene(jlscene *s, int animatino_type)
 {
-    jlscene *ret = jldirector_pop_scene(animatino_type);
-    jlscene_destroy(ret);
+    jldirector_pop_scene(animatino_type);
     jldirector_push_scene(s, animatino_type);
-    return ret;
+    return 0;
 }
 int jldirector_push_scene(jlscene *s, int animation_type)
 {
@@ -51,23 +50,22 @@ jlscene* jldirector_pop_scene(int animation_type)
     struct list_head *pos = director->scenehead.prev;
     jlscene *s = list_entry(pos, jlscene, list);
     list_del(&s->list);
+    jlscene_destroy(s);
     return s;
 }
 
 int jldirector_pop_to_scene(jlscene *s, int animation_type)
 {
-    struct list_head *pos, *n;
-    int should_delete = 0;
-    list_for_each_safe(pos, n, &director->scenehead){
-        jlscene *tmp = list_entry(pos, jlscene, list);
-        if(should_delete){
-            jlscene_destroy(tmp);
-            continue;
+    do{
+        if(director->scenehead.next != &director->scenehead){
+            jlscene *tmp = list_entry(director->scenehead.prev, jlscene, list);
+            if(tmp != s){
+                jldirector_pop_scene(0);
+            }
+        }else{
+            break;
         }
-        if(tmp == s){
-            should_delete = 1;
-        }
-    }
+    }while(1);
     return 0;
 }
 
