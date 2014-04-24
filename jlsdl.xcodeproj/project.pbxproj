@@ -47,6 +47,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E2481BED1908EC95003AE642 /* ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios.h; sourceTree = "<group>"; };
 		E2786DC018F4D74D002527EF /* libjlsdl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libjlsdl.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2786DC318F4D74D002527EF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E2786DC718F4D74D002527EF /* jlsdl-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "jlsdl-Prefix.pch"; sourceTree = "<group>"; };
@@ -57,7 +58,6 @@
 		E2786DDB18F4D74D002527EF /* jlsdlTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "jlsdlTests-Info.plist"; sourceTree = "<group>"; };
 		E2786DDD18F4D74D002527EF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E2786DDF18F4D74D002527EF /* jlsdlTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = jlsdlTests.m; sourceTree = "<group>"; };
-		E2786DE918F4D77E002527EF /* ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios.h; sourceTree = "<group>"; };
 		E2786DEA18F4D77E002527EF /* ios.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ios.m; sourceTree = "<group>"; };
 		E2786DED18F4D7A9002527EF /* begin_code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = begin_code.h; sourceTree = "<group>"; };
 		E2786DEE18F4D7A9002527EF /* close_code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = close_code.h; sourceTree = "<group>"; };
@@ -259,6 +259,7 @@
 		E2786DEC18F4D7A9002527EF /* include */ = {
 			isa = PBXGroup;
 			children = (
+				E2481BED1908EC95003AE642 /* ios.h */,
 				E27D11F418F77A7C0003A3D7 /* SDL_image.h */,
 				E27D11F518F77A7C0003A3D7 /* SDL_mixer.h */,
 				E27D11F618F77A7C0003A3D7 /* SDL_ttf.h */,
@@ -348,7 +349,6 @@
 		E2786E3B18F4D806002527EF /* platform */ = {
 			isa = PBXGroup;
 			children = (
-				E2786DE918F4D77E002527EF /* ios.h */,
 				E2786DEA18F4D77E002527EF /* ios.m */,
 			);
 			name = platform;

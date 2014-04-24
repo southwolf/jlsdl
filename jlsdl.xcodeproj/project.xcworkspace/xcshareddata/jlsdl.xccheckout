@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>1260E4C5-92A0-48DA-BFCD-0120E44BB42E</string>
+	<string>5D21123A-9BDE-4F57-A7AB-E029C71FABFE</string>
 	<key>IDESourceControlProjectName</key>
 	<string>jlsdl</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>F22D376D-24E6-4C2D-839D-48EFEEE6A476</key>
-		<string>ssh://jingluntianxia.com/~/jlsdl.git</string>
+		<key>D1AF7174-AB0C-4BFA-A0B9-0DA5C3F59AA0</key>
+		<string>https://github.com/itravelpp/jlsdl.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>jlsdl.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>F22D376D-24E6-4C2D-839D-48EFEEE6A476</key>
+		<key>D1AF7174-AB0C-4BFA-A0B9-0DA5C3F59AA0</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://jingluntianxia.com/~/jlsdl.git</string>
+	<string>https://github.com/itravelpp/jlsdl.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>F22D376D-24E6-4C2D-839D-48EFEEE6A476</string>
+	<string>D1AF7174-AB0C-4BFA-A0B9-0DA5C3F59AA0</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>F22D376D-24E6-4C2D-839D-48EFEEE6A476</string>
+			<string>D1AF7174-AB0C-4BFA-A0B9-0DA5C3F59AA0</string>
 			<key>IDESourceControlWCCName</key>
 			<string>jlsdl</string>
 		</dict>
