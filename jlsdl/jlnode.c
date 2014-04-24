@@ -38,6 +38,8 @@ int jlnode_render(jlnode *node, unsigned int ticks)
     }
     struct list_head *pos, *n;
     double angle = 0;
+    SDL_Rect rect = node->frame;
+    int isscroll = 0;
     list_for_each_safe(pos, n, &node->animhead){
         jlanim *a = list_entry(pos, jlanim, list);
         if(a->type == JLANIM_MOVE){
@@ -62,7 +64,25 @@ int jlnode_render(jlnode *node, unsigned int ticks)
                 node->texture = tmp;
                 a->rest = a->duration / a->movienum;
             }
+        }else if(a->type == JLANIM_SCROLL){
+            isscroll = 1;
+            if(a->direction == 0){
+                node->frame.y += a->v;
+                if(node->frame.y >= a->totalp){
+                    node->frame.y = 0;
+                }
+                rect.y = node->frame.y - a->totalp;
+            }else{
+                node->frame.x += a->v;
+                if(node->frame.x >= a->totalp){
+                    node->frame.x = 0;
+                }
+                rect.x = node->frame.x - a->totalp;
+            }
         }
+    }
+    if(isscroll){
+        SDL_RenderCopyEx(renderer, node->texture, NULL, &rect, angle, NULL, SDL_FLIP_NONE);
     }
     SDL_RenderCopyEx(renderer, node->texture, NULL, &node->frame, angle, NULL, SDL_FLIP_NONE);
     list_for_each_safe (pos, n, &node->childhead){

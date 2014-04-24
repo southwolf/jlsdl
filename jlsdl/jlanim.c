@@ -154,6 +154,8 @@ jlanim* jlanim_create(int type, int ms, int rep)
         anim->repeate = rep;
         if(type == JLANIM_MOVIE){
             INIT_LIST_HEAD(&anim->moviehead);
+        }else if(type == JLANIM_SCROLL){
+            anim->v = ms;
         }
     }
     return  anim;

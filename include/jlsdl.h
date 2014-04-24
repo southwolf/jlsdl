@@ -118,6 +118,12 @@ typedef struct jlanim{
     struct list_head moviehead;//多帧链表头
     int movienum;//帧数
     struct list_head *moviecur;
+    
+    //scroll
+    int v;//x pixels every frame
+    int direction;//direction, 0 for v, 1 for h
+    int totalp;//total pixels to scroll
+    
     jlcallback callback;
 }jlanim;
 

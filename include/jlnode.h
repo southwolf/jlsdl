@@ -19,6 +19,7 @@ enum {
     JLANIM_ROTATE,//旋转
     JLANIM_FLIP,//翻转，暂不支持
     JLANIM_MOVIE,//播放多帧动画
+    JLANIM_SCROLL,//无限滚动
 };
 //创建动画帧
 jlmovie* jlmovie_create(char *file);
@@ -33,7 +34,7 @@ int jlmovie_add_file(jlanim *anim, char *newfile);
 //销毁帧
 int jlmovie_destroy(jlmovie *movie);
 
-//创建动画，类型，耗时，是否重复
+//创建动画，类型，耗时，是否重复(当type为无限滚动时,ms为每帧移动的像素数)
 jlanim* jlanim_create(int type, int ms, int rep);
 
 //设置移动动画的起点，终点
