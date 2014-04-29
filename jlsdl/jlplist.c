@@ -297,7 +297,7 @@ int jlplist_set_node_file_texture(jlplistfile *file, char *filename, jlnode *nod
 
 jlanim* jlplist_create_animation(char *plistfile, char *imagefile, int duration)
 {
-    jlanim *ret = jlanim_create(JLANIM_MOVIE, duration, 0);
+    jlanim *ret = jlanim_create(JLANIM_MOVIE, duration, 0, NULL);
     jlplistfile *plist = jlplistfile_open(plistfile, imagefile);
     if(!plist){
         printf("open file:%s error\n", plistfile);
@@ -317,5 +317,6 @@ jlanim* jlplist_create_animation(char *plistfile, char *imagefile, int duration)
             }
         }
     }
+    ret->rest = duration / ret->movienum;//set rest
     return ret;
 }

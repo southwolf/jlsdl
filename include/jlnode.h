@@ -34,8 +34,8 @@ int jlmovie_add_file(jlanim *anim, char *newfile);
 //销毁帧
 int jlmovie_destroy(jlmovie *movie);
 
-//创建动画，类型，耗时，是否重复(当type为无限滚动时,ms为每帧移动的像素数)
-jlanim* jlanim_create(int type, int ms, int rep);
+//创建动画，类型，耗时，是否重复(当type为无限滚动时,ms为每帧移动的像素数),data根据类型不同而不同
+jlanim* jlanim_create(int type, int ms, int rep, char* data);
 
 //设置移动动画的起点，终点
 int jlanim_set_move_point(jlanim* anim,int fx, int fy, int tx, int ty);
@@ -43,6 +43,8 @@ int jlanim_set_move_point(jlanim* anim,int fx, int fy, int tx, int ty);
 //销毁动画
 int jlanim_destroy(jlanim *anim);
 
+//获得当前帧动画
+SDL_Texture* jlanim_get_movie_curr_texture(jlanim *a);
 //根据index获得第n个帧的texture
 SDL_Texture *jlanim_get_movie_texture_at_index(jlanim *a, int index);
 //获得下一帧的动画

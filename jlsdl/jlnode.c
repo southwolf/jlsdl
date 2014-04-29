@@ -31,15 +31,10 @@ int jlnode_move(jlnode *node, jlanim *a)
 }
 int jlnode_render(jlnode *node, unsigned int ticks)
 {
-    if(!node)
+    if(!node || node->ishidden){
         return -1;
-    if(node->ishidden){
-        return 0;
     }
     struct list_head *pos, *n;
-    double angle = 0;
-    SDL_Rect rect = node->frame;
-    int isscroll = 0;
     list_for_each_safe(pos, n, &node->animhead){
         jlanim *a = list_entry(pos, jlanim, list);
         if(a->type == JLANIM_MOVE){
@@ -47,8 +42,7 @@ int jlnode_render(jlnode *node, unsigned int ticks)
                 return -1;
             }
         }else if(a->type == JLANIM_ROTATE){
-            a->angle += 360/(a->duration/JLDELAY);
-            angle = a->angle;
+            node->angle += a->anglePerFrame;
         }else if(a->type == JLANIM_FLIP){
             
         }else if(a->type == JLANIM_MOVIE){
@@ -56,16 +50,17 @@ int jlnode_render(jlnode *node, unsigned int ticks)
             a->lastTick = ticks;
             if(a->rest <= 0){
                 SDL_Texture *tmp = jlanim_get_movie_next_texture(a);
-                
                 if(tmp == NULL){
                     jlnode_unrun_animation(node, a);
                     continue;
                 }
                 node->texture = tmp;
                 a->rest = a->duration / a->movienum;
+            }else{
+                node->texture = jlanim_get_movie_curr_texture(a);
             }
         }else if(a->type == JLANIM_SCROLL){
-            isscroll = 1;
+            SDL_Rect rect = node->frame;
             if(a->direction == 0){
                 node->frame.y += a->v;
                 if(node->frame.y >= a->totalp){
@@ -79,12 +74,10 @@ int jlnode_render(jlnode *node, unsigned int ticks)
                 }
                 rect.x = node->frame.x - a->totalp;
             }
+            SDL_RenderCopyEx(renderer, node->texture, NULL, &rect, node->angle, NULL, SDL_FLIP_NONE);
         }
     }
-    if(isscroll){
-        SDL_RenderCopyEx(renderer, node->texture, NULL, &rect, angle, NULL, SDL_FLIP_NONE);
-    }
-    SDL_RenderCopyEx(renderer, node->texture, NULL, &node->frame, angle, NULL, SDL_FLIP_NONE);
+    SDL_RenderCopyEx(renderer, node->texture, NULL, &node->frame, node->angle, NULL, SDL_FLIP_NONE);
     list_for_each_safe (pos, n, &node->childhead){
         jlnode *n = list_entry(pos, jlnode, nlist);
         jlnode_render(n, ticks);

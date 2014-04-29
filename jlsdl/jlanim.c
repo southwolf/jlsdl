@@ -63,8 +63,18 @@ int jlmovie_destroy(jlmovie *movie)
     free(movie);
     return 0;
 }
-
-SDL_Texture *jlanim_get_movie_next_texture(jlanim *a)
+SDL_Texture* jlanim_get_movie_curr_texture(jlanim *a)
+{
+    if(!a){
+        return NULL;
+    }
+    if(a->moviecur == NULL){
+        a->moviecur = &a->moviehead;
+    }
+    jlmovie *m = list_entry(a->moviecur, jlmovie, list);
+    return m->texture;
+}
+SDL_Texture* jlanim_get_movie_next_texture(jlanim *a)
 {
     if(!a)
         return NULL;
@@ -138,7 +148,7 @@ int jlanim_set_name(jlanim* a, char *name)
     a->name = strdup(name);
     return 0;
 }
-jlanim* jlanim_create(int type, int ms, int rep)
+jlanim* jlanim_create(int type, int ms, int rep, char* data)
 {
     jlanim *anim = NULL;
     anim = malloc(sizeof(jlanim));
@@ -147,15 +157,17 @@ jlanim* jlanim_create(int type, int ms, int rep)
         INIT_LIST_HEAD(&anim->list);
         anim->type = type;
         anim->duration = ms;
-        if(type == JLANIM_MOVIE)
-            anim->rest = 0;
-        else
-            anim->rest = ms;
+        anim->rest = ms;
         anim->repeate = rep;
         if(type == JLANIM_MOVIE){
             INIT_LIST_HEAD(&anim->moviehead);
         }else if(type == JLANIM_SCROLL){
-            anim->v = ms;
+            anim->v = *(int*) data;
+        }else if(type == JLANIM_ROTATE){
+            anim->angle = *(float*) data;
+            anim->anglePerFrame = anim->angle / ((float)1000/JLDELAY);
+        }else if(type == JLANIM_MOVE){
+
         }
     }
     return  anim;

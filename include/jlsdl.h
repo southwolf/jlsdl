@@ -54,6 +54,7 @@ typedef struct jlschd{
 //节点结构
 typedef struct jlnode{
     SDL_Rect frame;//位置，大小
+    double angle;//旋转角度
     struct list_head childhead;//子节点链表头
     struct list_head nlist;//链表项
     struct list_head animhead;//正在运行的动画链表头
@@ -112,8 +113,8 @@ typedef struct jlanim{
     double dx, dy;//每次移动多少像素
     
     //rotate
-    double angle;//旋转的角度，根据耗时 递增
-    
+    float angle;//旋转的角度，根据耗时 递增
+    float anglePerFrame;
     //movie
     struct list_head moviehead;//多帧链表头
     int movienum;//帧数
