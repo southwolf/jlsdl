@@ -70,6 +70,8 @@ jlnode* jllayer_get_node_by_tag(jllayer *layer, int tag)
 
 int jllayer_destroy(jllayer *l)
 {
+    if(!l)
+        return -1;
     if(l->layerlist.next && l->layerlist.next != LIST_POISON1 )
         list_del(&l->layerlist);
     if(l->list.next && l->list.next != LIST_POISON1 )

@@ -72,7 +72,7 @@ int jl_loop()
     SDL_Event event;
     /* Enter render loop, waiting for user to quit */
     done = 0;
-    struct list_head *pos;
+    struct list_head *pos, *n;
     jl_event *je;
     int ret;
     
@@ -93,7 +93,7 @@ int jl_loop()
             --en;
         }while(ret > 0 && en > 0);
         
-        list_for_each(pos, &schdlist){
+        list_for_each_safe(pos, n, &schdlist){
             jlschd *sch = list_entry(pos, jlschd, list);
             if(bft - sch->lastCalledTicket > sch->interval){
                 sch->lastCalledTicket = bft;

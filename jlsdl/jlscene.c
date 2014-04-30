@@ -49,6 +49,8 @@ int jlscene_destroy(jlscene *s)
 
 int jlscene_add_layer(jlscene *scene, jllayer *layer)
 {
+    if(!scene || !layer)
+        return -1;
     layer->scene = scene;
     list_add_tail(&layer->layerlist, &scene->layerhead);
     return 0;

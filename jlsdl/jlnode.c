@@ -125,9 +125,9 @@ int jlnode_destroy(jlnode* node)
     if(!node)
         return -1;
     //remove from super
-    if(node->nlist.next != LIST_POISON1)
+    if(node->nlist.next && node->nlist.next != LIST_POISON1)
         list_del(&node->nlist);
-    if(node->list.next != LIST_POISON1)
+    if(node->list.next && node->list.next != LIST_POISON1)
         list_del(&node->list);
     //remove all children
     struct list_head *pos, *n;
