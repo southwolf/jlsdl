@@ -60,24 +60,27 @@ int jlnode_render(jlnode *node, unsigned int ticks)
                 node->texture = jlanim_get_movie_curr_texture(a);
             }
         }else if(a->type == JLANIM_SCROLL){
-            SDL_Rect rect = node->frame;
+            SDL_Rect rect = a->curRect;
             if(a->direction == 0){
-                node->frame.y += a->v;
-                if(node->frame.y >= a->totalp){
-                    node->frame.y = 0;
+                a->curRect.y += a->v;
+                if(a->curRect.y >= a->totalp){
+                    a->curRect.y = 0;
                 }
-                rect.y = node->frame.y - a->totalp;
+                rect.y = a->curRect.y - a->totalp;
             }else{
-                node->frame.x += a->v;
-                if(node->frame.x >= a->totalp){
-                    node->frame.x = 0;
+                a->curRect.x += a->v;
+                if(a->curRect.x >= a->totalp){
+                    a->curRect.x = 0;
                 }
-                rect.x = node->frame.x - a->totalp;
+                rect.x = a->curRect.x - a->totalp;
             }
             SDL_RenderCopyEx(renderer, node->texture, NULL, &rect, node->angle, NULL, SDL_FLIP_NONE);
+            SDL_RenderCopyEx(renderer, node->texture, NULL, &a->curRect, node->angle, NULL, SDL_FLIP_NONE);
+            goto NOTDRAW;
         }
     }
     SDL_RenderCopyEx(renderer, node->texture, NULL, &node->frame, node->angle, NULL, SDL_FLIP_NONE);
+NOTDRAW:
     list_for_each_safe (pos, n, &node->childhead){
         jlnode *n = list_entry(pos, jlnode, nlist);
         jlnode_render(n, ticks);

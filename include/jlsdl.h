@@ -121,6 +121,7 @@ typedef struct jlanim{
     struct list_head *moviecur;
     
     //scroll
+    SDL_Rect curRect;//滚动到当前rect
     int v;//x pixels every frame
     int direction;//direction, 0 for v, 1 for h
     int totalp;//total pixels to scroll
