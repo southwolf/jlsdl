@@ -300,7 +300,7 @@ Uint32 jl_map_color(SDL_Color *color)
 
 int jl_rect_contain_point(SDL_Rect rect, int x, int y)
 {
-    if(x > rect.x && x < rect.x+rect.w  && y > rect.y && y < rect.y +rect.h){
+    if(x >= rect.x && x <= rect.x+rect.w  && y >= rect.y && y <= rect.y +rect.h){
         return 1;
     }
     return 0;
